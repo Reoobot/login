@@ -7,16 +7,20 @@ export default function RegisterPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function registerUser(ev) {
+    async function registerUser(ev) {
         ev.preventDefault()
-        axios.post('/register', {
-            name,
-            email,
-            password,
-        })
+       try {
+        
+           await axios.post('/register', {
+               name,
+               email,
+               password,
+           })
+           alert('Registrstion successful. Now you can login')
+       } catch (e) {
+        alert('Registration failes. Please try agai later')
+       }
     }
-
-
     return (
         <div className="mt-4 grow flex items-center justify-around">
             <div className="mb-64">
@@ -27,7 +31,7 @@ export default function RegisterPage() {
                     <input value={password} onChange={ev=>setPassword(ev.target.value)} type="password" placeholder="password"/>
                     <button className="primary">Register</button>
                     <div className="text-center py-2 text-gray-500"  >
-                      Already a momber?  <Link to={'/login'} className="underline text-black"></Link>
+                      Already a momber?  <Link to={'/login'} className="underline text-black">Login</Link>
                     </div>
                 </form>
             </div>
