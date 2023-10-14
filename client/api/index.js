@@ -7,13 +7,15 @@ require('dotenv').config();
 
 const app = express();
 
-const bcryptSalt = bcrypt.genSaltSync(10); // Se recomienda definir el valor de salt en lugar de usar bcrypt.genSalt
+const originURL = process.env.ORIGIN_URL || 'http://localhost:5173';
 
+const bcryptSalt = bcrypt.genSaltSync(10); // Se recomienda definir el valor de salt en lugar de usar bcrypt.genSalt
 app.use(express.json());
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:5173',
+  origin: originURL,
 }));
+
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
