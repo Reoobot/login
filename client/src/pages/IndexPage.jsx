@@ -2,7 +2,8 @@ import Header from "../componet/Header";
 
 export default function IndexPage() {
     return(
-        <div>
+        <div className="">
+          {/* <Header/> */}
           indepage here
         </div> 
     );
